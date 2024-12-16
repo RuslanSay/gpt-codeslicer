@@ -2,11 +2,12 @@
   "name": "gpt-codeslicer",
   "displayName": "GPT CodeSlicer",
   "description": "A VS Code extension for splitting ChatGPT-generated multi-file outputs into organized files and folders.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "RuslanSay",
   "engines": {
     "vscode": "^1.75.0"
   },
+  "icon": "gpt_codeslicer_logo_128x128.png",
   "categories": [
     "Other"
   ],
