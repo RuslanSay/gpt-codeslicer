@@ -2,7 +2,7 @@
   "name": "gpt-codeslicer",
   "displayName": "GPT CodeSlicer",
   "description": "A VS Code extension for splitting ChatGPT-generated multi-file outputs into organized files and folders.",
-  "version": "1.0.7",
+  "version": "1.1.7",
   "publisher": "RuslanSay",
   "engines": {
     "vscode": "^1.75.0"
@@ -13,6 +13,20 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "properties": {
+        "gptCodeSlicer.showInContextMenu": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the CodeSlicer clipboard splitting command in the explorer context menu."
+        },
+        "gptCodeSlicer.runFormatterOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, run the VS Code formatter on each created file after splitting."
+        }
+      }
+    },
     "commands": [
       {
         "command": "splitter.splitFileToFolder",
@@ -21,8 +35,25 @@
       {
         "command": "splitter.splitFileToSameFolder",
         "title": "GPT CodeSlicer: Split Files Here"
+      },
+      {
+        "command": "splitter.splitClipboardToFolder",
+        "title": "GPT CodeSlicer: Split Clipboard to Folder"
+      },
+      {
+        "command": "splitter.splitClipboardToSelectedFolder",
+        "title": "GPT CodeSlicer: Split Clipboard to Selected Folder"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "splitter.splitClipboardToSelectedFolder",
+          "group": "navigation",
+          "when": "config.gptCodeSlicer.showInContextMenu && (explorerResourceIsFolder || explorerResourceIsFile)"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
